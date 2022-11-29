@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		body{
+			 background-image:  url("img1.jpg" );
+		    background-repeat:no-repeat ;
+			background-size: 100%;
+		}
+		#page{
+			color: red;
+		}
+		.parent{
+			background-color: white;
+			width:30%;
+			padding:3%;
+			margin: auto;
+			text-align: center;
+			margin-top: 6.8%;
+		}
+		.parent input{
+			padding: 1%;
+		}
+		#button{
+			padding: 1%;
+			font-size: 1em;
+			border-radius: 10px;
+		}
+		#button:hover{
+			color: pink;
+			background-color: black;
+		}
+		#input::placeholder{
+			text-align: center;
+		}
+		#password::placeholder{
+			text-align: center;
+		}
+	</style>
+	<script type="text/javascript">
+	
+
+	  function submit(){
+			let input=document.getElementById("input").value
+			console.log(input)
+
+			let password=document.getElementById("password").value
+		     console.log(password)
+
+		     let select=document.getElementById("select").value
+		     console.log(select)
+
+		     let email=document.getElementById("email").value
+		     console.log(email)
+
+		     let gmale=document.getElementById("male").checked
+		     let gfemale=document.getElementById("female").checked
+		     console.log(gmale,gfemale)
+		     if(gmale==true) 
+		     	gender="male"
+		     	else 
+		       gender="female"
+		       console.log(gender)
+
+		     
+
+		   fetch("http://localhost:5000/newData",{
+		        method:"POST",
+		        headers:{
+		        	"content-Type":"application/json"
+		        },
+		        body:JSON.stringify({name:input,age:password,email:email,select:select,gender:gender})
+			})
+		}
+	</script>
+</head>
+
+<body>
+	<div class="parent">
+		<h1 id="page">LOGIN PAGE</h1>
+		<input  id="input" placeholder="Type Your Name"/><br><br>
+		<input  id="password" placeholder="Enter Password"><br><br> 
+		<input id="email" placeholder="enter a email" ><br>
+		<h3>select a bike</h3>
+		<select id="select">
+		<option value="ninja">ninja</option>
+		<option value="ktm">ktm</option>		
+		<option value="R15">R15</option>
+		</select>
+		<h3>gender</h3>
+		<p>
+		<input id="male" type="radio" name="gender" >male
+		<input id="female" type="radio" name="gender" >female
+		</p>
+	    <button id="button" onclick= "submit()">Submit</button>
+  
+</body>
+</html>
